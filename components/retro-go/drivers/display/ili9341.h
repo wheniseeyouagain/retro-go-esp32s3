@@ -240,9 +240,10 @@ static void lcd_init(void)
     rg_usleep(10 * 1000);
 #endif
 
-    ILI9341_CMD(0x01);          // Reset
+    ILI9341_CMD(0x10);          // Reset
     rg_usleep(5 * 1000);        // Wait 5ms after reset
-    ILI9341_CMD(0x3A, 0X05);    // Pixel Format Set RGB565
+    ILI9341_CMD(0x36, 0x00);    // Memory Data Access Control
+    ILI9341_CMD(0x3A, 0x05);    // Pixel Format Set RGB565
     #ifdef RG_SCREEN_INIT
         RG_SCREEN_INIT();
     #else

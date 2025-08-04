@@ -97,5 +97,16 @@
 		"files.watcherExclude": {
 			"**/build/**": true,
 		},
+		"files.associations": {
+			"rg_gui.h": "c",
+			"translations.h": "c",
+			"rg_msc.h": "c",
+			"sdspi_host.h": "c",
+			"*.inc": "c",
+			"rg_system.h": "c",
+			"thread": "c",
+			"*.def": "c",
+			"system_error": "c"
+		},
 	}
 }

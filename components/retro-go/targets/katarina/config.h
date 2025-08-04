@@ -1,7 +1,7 @@
 // REF: https://wiki.odroid.com/odroid_go/odroid_go
 
 // Target definition
-#define RG_TARGET_NAME             "GBmini"
+#define RG_TARGET_NAME             "Katarina"
 
 // Storage
 #define RG_STORAGE_SDSPI_HOST       SPI3_HOST
@@ -25,7 +25,6 @@
 #define RG_SCREEN_MARGIN_LEFT       0
 #define RG_SCREEN_MARGIN_RIGHT      0
 #define RG_SCREEN_INIT()                                                                                     \
-    ILI9341_CMD(0x3A, 0x05);                                                                                 \
     ILI9341_CMD(0xB2, 0x0C, 0x0C, 0x00, 0x33, 0x33);                                                         \
     ILI9341_CMD(0xB7, 0x35);                                                                                 \
     ILI9341_CMD(0xBB, 0x38);                                                                                 \
@@ -37,7 +36,6 @@
     ILI9341_CMD(0xD0, 0xA4, 0xA1);                                                                           \
     ILI9341_CMD(0xE0, 0xD0, 0x00, 0x05, 0x0E, 0x15, 0x0D, 0x37, 0x43, 0x47, 0x09, 0x15, 0x12, 0x16, 0x19);   \
     ILI9341_CMD(0xE1, 0xD0, 0x00, 0x05, 0x0D, 0x0C, 0x06, 0x2D, 0x44, 0x40, 0x0E, 0x1C, 0x18, 0x16, 0x19);
-
 
 // Input
 // Refer to rg_input.h to see all available RG_KEY_* and RG_GAMEPAD_*_MAP types
@@ -69,12 +67,12 @@
 
 // SPI Display (back up working)
 #define RG_GPIO_LCD_MISO            GPIO_NUM_NC
-#define RG_GPIO_LCD_MOSI            GPIO_NUM_10
-#define RG_GPIO_LCD_CLK             GPIO_NUM_11
-#define RG_GPIO_LCD_CS              GPIO_NUM_9
-#define RG_GPIO_LCD_DC              GPIO_NUM_13
-#define RG_GPIO_LCD_BCKL            GPIO_NUM_3
-#define RG_GPIO_LCD_RST             GPIO_NUM_12
+#define RG_GPIO_LCD_MOSI            GPIO_NUM_9
+#define RG_GPIO_LCD_CLK             GPIO_NUM_10
+#define RG_GPIO_LCD_CS              GPIO_NUM_3
+#define RG_GPIO_LCD_DC              GPIO_NUM_12
+#define RG_GPIO_LCD_BCKL            GPIO_NUM_13
+#define RG_GPIO_LCD_RST             GPIO_NUM_11
 
 // SD Card
 #define RG_GPIO_SDSPI_MISO          GPIO_NUM_15

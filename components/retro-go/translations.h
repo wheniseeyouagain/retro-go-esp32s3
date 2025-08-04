@@ -47,6 +47,7 @@ static const char *translations[][RG_LANG_MAX] =
     {
 	    [RG_LANG_EN] = "Full",
 	    [RG_LANG_FR] = "Complet",
+        [RG_LANG_SC] = "全屏"
     },
     {
         [RG_LANG_EN] = "Yes",
@@ -185,7 +186,7 @@ static const char *translations[][RG_LANG_MAX] =
     {
         [RG_LANG_EN] = "Launcher options",
         [RG_LANG_FR] = "Options du lanceur",
-        [RG_LANG_SC] = "前端选项"
+        [RG_LANG_SC] = "高级选项"
     },
     {
         [RG_LANG_EN] = "Emulator options",
@@ -526,7 +527,7 @@ static const char *translations[][RG_LANG_MAX] =
     {
         [RG_LANG_EN] = "Show clock",
         [RG_LANG_FR] = "Horloge",
-        [RG_LANG_SC] = "显示时钟"
+        [RG_LANG_SC] = "时钟"
     },
     {
         [RG_LANG_EN] = "Timezone",
@@ -599,7 +600,7 @@ static const char *translations[][RG_LANG_MAX] =
     {
         [RG_LANG_EN] = "Debug menu",
         [RG_LANG_FR] = "Menu debug",
-        [RG_LANG_SC] = "Debug 菜单"
+        [RG_LANG_SC] = "开发者菜单"
     },
     {
         [RG_LANG_EN] = "Reset settings",
@@ -611,22 +612,37 @@ static const char *translations[][RG_LANG_MAX] =
     {
         [RG_LANG_EN] = "Slot 0",
         [RG_LANG_FR] = "Emplacement 0",
-        [RG_LANG_SC] = "存档 0"
+        [RG_LANG_SC] = "存档 1"
     },
     {
         [RG_LANG_EN] = "Slot 1",
         [RG_LANG_FR] = "Emplacement 1",
-        [RG_LANG_SC] = "存档 1"
+        [RG_LANG_SC] = "存档 2"
     },
     {
         [RG_LANG_EN] = "Slot 2",
         [RG_LANG_FR] = "Emplacement 2",
-        [RG_LANG_SC] = "存档 2"
+        [RG_LANG_SC] = "存档 3"
     },
     {
         [RG_LANG_EN] = "Slot 3",
         [RG_LANG_FR] = "Emplacement 3",
-        [RG_LANG_SC] = "存档 3"
+        [RG_LANG_SC] = "存档 4"
+    },
+    {
+        [RG_LANG_EN] = "Slot",
+        [RG_LANG_FR] = "Emplacement",
+        [RG_LANG_SC] = "存档"
+    },
+    {
+        [RG_LANG_EN] = "last used",
+        [RG_LANG_FR] = "last used",
+        [RG_LANG_SC] = "最近"
+    },
+    {
+        [RG_LANG_EN] = "is empty",
+        [RG_LANG_FR] = "is empty",
+        [RG_LANG_SC] = "空闲"
     },
 
     // game menu
@@ -989,7 +1005,8 @@ static const char *translations[][RG_LANG_MAX] =
     },
     {
         [RG_LANG_EN] = "System Panic!",
-        [RG_LANG_FR] = "Plantage systeme!"
+        [RG_LANG_FR] = "Plantage systeme!",
+        [RG_LANG_SC] = "系统崩溃"
     },
     {
         [RG_LANG_EN] = "Save failed",

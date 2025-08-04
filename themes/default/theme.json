@@ -3,16 +3,18 @@
     "website": "https://github.com/ducalex/retro-go/",
     "author": "ducalex",
     "dialog": {
-        "__comment": "This section contains global dialog colors",
-        "background": "0x0010",
+        "__comment": "系统对话框",
+        "background": "0x0000",
+        "__background": "窗口背景、条目选中文本",
         "foreground": "0xFFFF",
-        "border": "0x6B4D",
-        "header": "0xFFFF",
-        "scrollbar": "0xFFFF",
-        "shadow": "none",
-        "item_standard": "0xFFFF",
-        "item_disabled": "0x8410",
-        "item_message": "0xBDF7"
+        "border": "0x776735",
+        "header": "0x776735",
+        "scrollbar": "0xb59840",
+        "shadow": "0x0000",
+        "item_standard": "0xb59840",
+        "__item_standard": "默认文本、选中背景",
+        "item_disabled": "0x3d3d3d",
+        "item_message": "0x3d3d3d"
     },
     "launcher_1": {
         "__comment": "This section contains launcher colors variant 1",

@@ -111,8 +111,8 @@ void rg_gui_init(void)
     gui.screen_safezone = 0;
     #endif
     gui.draw_buffer = get_draw_buffer(gui.screen_width, 18, C_BLACK);
-    rg_gui_set_language_id(rg_settings_get_number(NS_GLOBAL, SETTING_LANGUAGE, RG_LANG_EN));
-    rg_gui_set_font(rg_settings_get_number(NS_GLOBAL, SETTING_FONTTYPE, RG_FONT_VERA_12));
+    rg_gui_set_language_id(rg_settings_get_number(NS_GLOBAL, SETTING_LANGUAGE, RG_LANG_SC));
+    rg_gui_set_font(rg_settings_get_number(NS_GLOBAL, SETTING_FONTTYPE, RG_FONT_FUSIONPIXEL_12));
     rg_gui_set_theme(rg_settings_get_string(NS_GLOBAL, SETTING_THEME, NULL));
     gui.show_clock = rg_settings_get_boolean(NS_GLOBAL, SETTING_CLOCK, false);
     gui.initialized = true;
@@ -173,13 +173,13 @@ bool rg_gui_set_theme(const char *theme_name)
         RG_LOGI("Using built-in theme!\n");
     }
 
-    gui.style.box_background = rg_gui_get_theme_color("dialog", "background", C_NAVY);
-    gui.style.box_header = rg_gui_get_theme_color("dialog", "header", C_WHITE);
-    gui.style.box_border = rg_gui_get_theme_color("dialog", "border", C_DIM_GRAY);
-    gui.style.item_standard = rg_gui_get_theme_color("dialog", "item_standard", C_WHITE);
-    gui.style.item_disabled = rg_gui_get_theme_color("dialog", "item_disabled", C_GRAY);
-    gui.style.item_message = rg_gui_get_theme_color("dialog", "item_message", C_SILVER);
-    gui.style.scrollbar = rg_gui_get_theme_color("dialog", "scrollbar", C_WHITE);
+    gui.style.box_background = rg_gui_get_theme_color("dialog", "background", C_BLACK);
+    gui.style.box_header = rg_gui_get_theme_color("dialog", "header", C_BRIGHT_YELLOW);
+    gui.style.box_border = rg_gui_get_theme_color("dialog", "border", C_OLIVE_YELLOW);
+    gui.style.item_standard = rg_gui_get_theme_color("dialog", "item_standard", C_BRIGHT_YELLOW);
+    gui.style.item_disabled = rg_gui_get_theme_color("dialog", "item_disabled", C_DARK_YELLOW);
+    gui.style.item_message = rg_gui_get_theme_color("dialog", "item_message", C_BRIGHT_YELLOW);
+    gui.style.scrollbar = rg_gui_get_theme_color("dialog", "scrollbar", C_BRIGHT_YELLOW);
     gui.style.shadow = rg_gui_get_theme_color("dialog", "shadow", C_NONE);
 
     return true;
@@ -331,7 +331,7 @@ static size_t get_glyph(uint32_t *output, const rg_font_t *font, int points, uin
     {
         if(c > 254){
             return glyph_width;
-        } 
+        }
         // Based on code by Boris Lovosevic (https://github.com/loboris)
         int charCode, adjYOffset, width, height, xOffset, xDelta;
         const uint8_t *data = font->data;
@@ -390,49 +390,49 @@ static size_t get_glyph(uint32_t *output, const rg_font_t *font, int points, uin
     return glyph_width;
 }
 
-// 函数用于解码UTF-8字符并返回Unicode码点  
-// 注意：这个函数假设输入是有效的UTF-8编码  
-uint32_t decode_utf8_char(const char** str) {  
-    uint8_t c = (uint8_t)**str;  
-  
+// 函数用于解码UTF-8字符并返回Unicode码点
+// 注意：这个函数假设输入是有效的UTF-8编码
+uint32_t decode_utf8_char(const char** str) {
+    uint8_t c = (uint8_t)**str;
+
     (*str)++;
-    // 处理ASCII字符  
-    if (c < 0x80) {  
-        // (*str)++; // 移动到下一个字符  
-        return c;  
-    }  
-  
-    // 多字节字符处理  
-    uint32_t codepoint = 0;  
-    int bytes_needed = 0;  
-  
-    if ((c >> 5) == 0b110) {  
-        bytes_needed = 1;  
-    } else if ((c >> 4) == 0b1110) {  
-        bytes_needed = 2;  
-    } else if ((c >> 3) == 0b11110) {  
-        bytes_needed = 3;  
-    } else {  
-        // 无效的UTF-8起始字节  
-        return 0x20; // 替换字符  
-    }  
-  
-    // 读取并组合字节  
-    codepoint = c & ((1 << (6 - bytes_needed)) - 1);  
-    // (*str)++;  
-  
-    for (int i = 0; i < bytes_needed; i++) {  
-        c = (uint8_t)**str;  
-        if ((c >> 6) != 0b10) {  
-            // 无效的UTF-8后续字节  
+    // 处理ASCII字符
+    if (c < 0x80) {
+        // (*str)++; // 移动到下一个字符
+        return c;
+    }
+
+    // 多字节字符处理
+    uint32_t codepoint = 0;
+    int bytes_needed = 0;
+
+    if ((c >> 5) == 0b110) {
+        bytes_needed = 1;
+    } else if ((c >> 4) == 0b1110) {
+        bytes_needed = 2;
+    } else if ((c >> 3) == 0b11110) {
+        bytes_needed = 3;
+    } else {
+        // 无效的UTF-8起始字节
+        return 0x20; // 替换字符
+    }
+
+    // 读取并组合字节
+    codepoint = c & ((1 << (6 - bytes_needed)) - 1);
+    // (*str)++;
+
+    for (int i = 0; i < bytes_needed; i++) {
+        c = (uint8_t)**str;
+        if ((c >> 6) != 0b10) {
+            // 无效的UTF-8后续字节
             return 0x20; // 替换字符  0xFFFD
-        }  
-        codepoint = (codepoint << 6) | (c & 0x3F);  
-        (*str)++;  
-    }  
-  
-    return codepoint;  
-}  
+        }
+        codepoint = (codepoint << 6) | (c & 0x3F);
+        (*str)++;
+    }
+
+    return codepoint;
+}
 
 rg_rect_t rg_gui_draw_text(int x_pos, int y_pos, int width, const char *text, // const rg_font_t *font,
                            rg_color_t color_fg, rg_color_t color_bg, uint32_t flags)
@@ -516,7 +516,7 @@ rg_rect_t rg_gui_draw_text(int x_pos, int y_pos, int width, const char *text, //
            // int glyph_width = get_glyph(bitmap, font, font_height, *ptr++);
            char *start = ptr;
            uint32_t codepoint = decode_utf8_char(&ptr);
-           int glyph_width = get_glyph(bitmap, font, font_height, codepoint); 
+           int glyph_width = get_glyph(bitmap, font, font_height, codepoint);
            int width = monospace ?: glyph_width;
 
             if (draw_width - x_offset < width) // Do not truncate glyphs
@@ -1649,11 +1649,11 @@ void rg_gui_options_menu(void)
         {0, _("Brightness"),    "-", RG_DIALOG_FLAG_NORMAL, &brightness_update_cb},
         #endif
         {0, _("Volume"),        "-", RG_DIALOG_FLAG_NORMAL, &volume_update_cb},
-        {0, _("Audio out"),     "-", RG_DIALOG_FLAG_NORMAL, &audio_update_cb},
+        // {0, _("Audio out"),     "-", RG_DIALOG_FLAG_NORMAL, &audio_update_cb}, 去掉，默认就可以了
         RG_DIALOG_END,
     };
     const rg_gui_option_t misc_options[] = {
-        {0, _("Font type"),     "-", RG_DIALOG_FLAG_NORMAL, &font_type_cb},
+        // {0, _("Font type"),     "-", RG_DIALOG_FLAG_NORMAL, &font_type_cb},  字体默认为RG_FONT_FUSIONPIXEL_12，支持中英文，因此去掉此选项
         {0, _("Theme"),         "-", RG_DIALOG_FLAG_NORMAL, &theme_cb},
         {0, _("Show clock"),    "-", RG_DIALOG_FLAG_NORMAL, &show_clock_cb},
         {0, _("Timezone"),      "-", RG_DIALOG_FLAG_NORMAL, &timezone_cb},
@@ -1858,13 +1858,13 @@ static rg_gui_event_t slot_select_cb(rg_gui_option_t *option, rg_gui_event_t eve
         {
             preview = rg_surface_load_image_file(slot->preview, 0);
             if (slot->is_lastused)
-                snprintf(buffer, sizeof(buffer), "Slot %d (last used)", slot->id);
-            else
-                snprintf(buffer, sizeof(buffer), "Slot %d", slot->id);
+                snprintf(buffer, sizeof(buffer), _("last used"));
+            // else
+            //     snprintf(buffer, sizeof(buffer), "Slot");
         }
         else
         {
-            snprintf(buffer, sizeof(buffer), "Slot %d is empty", slot->id);
+            snprintf(buffer, sizeof(buffer), _("is empty"));
             color = C_RED;
         }
         rg_gui_draw_image(0, margin, gui.screen_width, gui.screen_height - margin * 2, true, preview);

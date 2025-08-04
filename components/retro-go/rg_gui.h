@@ -275,6 +275,9 @@ enum colors565 // rg_color_t
     C_GAINSBORO                = 0xDEDB,
     C_WHITE_SMOKE              = 0xF7BE,
     C_WHITE                    = 0xFFFF,
+    C_OLIVE_YELLOW             = 0x7326,  // 淡黄
+    C_BRIGHT_YELLOW            = 0xb4c8,  // 亮黄
+    C_DARK_YELLOW              = 0x41c5,  // 暗黄
 
     C_TRANSPARENT = C_MAGENTA, // -1,
     C_NONE = -2,
