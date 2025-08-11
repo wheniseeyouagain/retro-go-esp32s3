@@ -412,8 +412,7 @@ void rg_display_set_backlight(display_backlight_t percent)
 {
     config.backlight = RG_MIN(RG_MAX(percent, RG_DISPLAY_BACKLIGHT_MIN), RG_DISPLAY_BACKLIGHT_MAX);
     rg_settings_set_number(NS_GLOBAL, SETTING_BACKLIGHT, config.backlight);
-    //lcd_set_backlight(config.backlight);                              //retro-go原文件
-    lcd_set_backlight(RG_DISPLAY_BACKLIGHT_MAX-config.backlight);       //背光异常，比如增加背光，实际变暗，则启用在这条
+    lcd_set_backlight(config.backlight);
 
 }
 
@@ -601,7 +600,6 @@ void rg_display_init(void)
         .changed = true,
     };
     lcd_init();
-    lcd_set_backlight(RG_DISPLAY_BACKLIGHT_MAX - config.backlight); //新增代码
     display_task_queue = rg_task_create("rg_display", &display_task, NULL, 4 * 1024, RG_TASK_PRIORITY_6, 1);
     if (config.border_file)
         load_border_file(config.border_file);

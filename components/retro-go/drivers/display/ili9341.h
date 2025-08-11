@@ -213,6 +213,7 @@ static void lcd_init(void)
     ledc_channel_config(&(ledc_channel_config_t){
         .channel = LEDC_CHANNEL_0,
         .duty = 0,
+        .flags.output_invert = 1,
         .gpio_num = RG_GPIO_LCD_BCKL,
         .speed_mode = LEDC_LOW_SPEED_MODE,
         .timer_sel = LEDC_TIMER_0,
@@ -242,7 +243,6 @@ static void lcd_init(void)
 
     ILI9341_CMD(0x10);          // Reset
     rg_usleep(5 * 1000);        // Wait 5ms after reset
-    ILI9341_CMD(0x36, 0x00);    // Memory Data Access Control
     ILI9341_CMD(0x3A, 0x05);    // Pixel Format Set RGB565
     #ifdef RG_SCREEN_INIT
         RG_SCREEN_INIT();
@@ -250,11 +250,11 @@ static void lcd_init(void)
         #warning "LCD init sequence is not defined for this device!"
     #endif
     ILI9341_CMD(0x11);  // Exit Sleep
-    rg_usleep(10 * 1000);// Wait 10ms after sleep out
+    rg_usleep(120 * 1000);// Wait 120ms after sleep out
     ILI9341_CMD(0x29);  // Display on
 
     rg_display_clear(C_BLACK);
-    rg_usleep(10 * 1000);
+    rg_usleep(15 * 1000);
     lcd_set_backlight(config.backlight);
 }
 

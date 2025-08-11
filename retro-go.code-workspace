@@ -106,7 +106,8 @@
 			"rg_system.h": "c",
 			"thread": "c",
 			"*.def": "c",
-			"system_error": "c"
+			"system_error": "c",
+			"regex": "c"
 		},
 	}
 }
